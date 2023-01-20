@@ -17,7 +17,7 @@ function App() {
 
       <div className=" w-full  xl:h-[94vh] xl:mt-[3vh] xl:w-[85vw] xl:ml-48 ">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/entertainment" element={<Home />} />
           <Route
             path="/movie"
             element={<Movies type="movie" data={allMovies} />}

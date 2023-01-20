@@ -21,7 +21,7 @@ const Nav = () => {
         src={logo}
         className="w-6 h-5 absolute md:w-8 md:h-6 left-6 xl:left-12 xl:top-6 "
       />
-      <Link to="/">
+      <Link to="/entertainment">
         <img
           src={category === "all" ? categoryHome : home}
           className="w-4 h-4 md:w-5 md:h-5 "

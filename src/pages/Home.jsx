@@ -22,7 +22,7 @@ const Home = ({ type }) => {
   return (
     <div className="w-[94%] ml-[3%] mt-20 md:mt-32 xl:mt-0">
       <Search />
-      {searchContent?.length > 0 ? (
+      {search ? (
         <>
           <h2 className=" text-4xl text-white mb-8">
             {`Found ${searchContent.length} Trending for ${search} `}

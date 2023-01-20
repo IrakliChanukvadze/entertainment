@@ -19,8 +19,6 @@ const Movies = ({ type, data }) => {
 
   const { pathname } = useLocation();
   setCategory(pathname.slice(1));
-  console.log(search);
-  console.log(searchContent);
 
   searchContent?.length > 0
     ? searchContent?.map((item) => (
@@ -44,33 +42,32 @@ const Movies = ({ type, data }) => {
         />
       ));
 
-  const movies =
-    searchContent?.length > 0
-      ? searchContent?.map((item) => (
-          <MovieItem
-            key={item.id}
-            item={item}
-            url={`${img_300}${item.poster_path}`}
-            ranking={item.vote_average}
-            title={item.name || item.title}
-            type={type}
-          />
-        ))
-      : data?.map((item) => (
-          <MovieItem
-            key={item.id}
-            item={item}
-            url={`${img_300}${item.poster_path}`}
-            ranking={item.vote_average}
-            title={item.name || item.title}
-            type={type}
-          />
-        ));
+  const movies = search
+    ? searchContent?.map((item) => (
+        <MovieItem
+          key={item.id}
+          item={item}
+          url={`${img_300}${item.poster_path}`}
+          ranking={item.vote_average}
+          title={item.name || item.title}
+          type={type}
+        />
+      ))
+    : data?.map((item) => (
+        <MovieItem
+          key={item.id}
+          item={item}
+          url={`${img_300}${item.poster_path}`}
+          ranking={item.vote_average}
+          title={item.name || item.title}
+          type={type}
+        />
+      ));
   return (
     <div className="w-[94%] ml-[3%] mt-20 md:mt-32 xl:mt-0">
       <Search />
       <h2 className=" text-xl sm:text-2xl md:text-4xl text-white mb-8">
-        {searchContent?.length > 0
+        {search
           ? `Found ${searchContent.length} ${
               type === "movie" ? "Movies" : "TV Series"
             } for ${search} `
