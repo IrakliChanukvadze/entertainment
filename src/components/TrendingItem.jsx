@@ -39,7 +39,7 @@ const TrendingItem = ({ url, ranking, type, title, item, id }) => {
 
       <AiFillPlayCircle
         size={70}
-        className={`absolute  cursor-pointer rounded-lg top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50 text-white opacity-100   cursor-pointer ${
+        className={`absolute  rounded-lg top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50 text-white opacity-100   cursor-pointer ${
           hovered ? "block" : "hidden"
         }`}
         onClick={() => {
