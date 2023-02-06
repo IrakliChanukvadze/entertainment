@@ -75,26 +75,23 @@ const VideoPlayer = () => {
           />
         </div>
         <div className="flex flex-row justify-center mt-20 md:mt-0  md:justify-start flex-wrap md:flex-nowrap md:flex-col overflow-auto h-36 md:h-96 md:w-[30%] xl:w-[20%] gap-4 scrollbar-thin scrollbar-track-black scrollbar-thumb-gray-500 scrollbar-h-20 scrollbar-rounded-8">
-          {youtubeLinkData?.videos?.results
-            .reverse()
-            .map((item) => (
-              <div
-                className="flex flex-col h-32 w-auto justify-center md:h-auto md:flex-row  gap-4 cursor-pointer hover:bg-black py-2 "
-                key={item.id}
-                onClick={() => {
-                  setVideoId(item.key);
-                }}
-              >
-                <img
-                  src={`${img_300}${youtubeLinkData.backdrop_path}`}
-                  className="w-28 aspect-video"
-                />
-                <button>
-                  - {item.type.length > 7 ? item.type.slice(0, 7) : item.type}
-                </button>
-              </div>
-            ))
-            .reverse()}
+          {youtubeLinkData?.videos?.results.map((item) => (
+            <div
+              className="flex flex-col h-32 w-auto justify-center md:h-auto md:flex-row  gap-4 cursor-pointer hover:bg-black py-2 "
+              key={item.id}
+              onClick={() => {
+                setVideoId(item.key);
+              }}
+            >
+              <img
+                src={`${img_300}${youtubeLinkData.backdrop_path}`}
+                className="w-28 aspect-video"
+              />
+              <button>
+                - {item.type.length > 7 ? item.type.slice(0, 7) : item.type}
+              </button>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -4,7 +4,6 @@ import { NumericFormat } from "react-number-format";
 
 const TrailerText = () => {
   const { youtubeLinkData, img_500 } = useContext(Context);
-  console.log(youtubeLinkData);
   return (
     <div className="flex text-white mt-20 gap-10 flex-col uxs:flex-row py-4 mb-20">
       <img
