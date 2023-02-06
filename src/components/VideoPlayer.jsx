@@ -83,7 +83,6 @@ const VideoPlayer = () => {
                 key={item.id}
                 onClick={() => {
                   setVideoId(item.key);
-                  setAutoPlay(true);
                 }}
               >
                 <img

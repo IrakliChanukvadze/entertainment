@@ -13,31 +13,38 @@ const TrailerText = () => {
       />
       <div className="flex flex-col justify-center gap-4 pl-10 uxs:pl-0 ">
         <h2 className="font-bold tracking-[3px] text-xl md:text-2xl xl:text-4xl opacity-100">
-          {youtubeLinkData?.original_title}
+          {youtubeLinkData?.original_title || youtubeLinkData?.original_name}
         </h2>
         <h2 className="opacity-80">
-          released year: {youtubeLinkData?.release_date?.slice(0, 4)}
+          released year:{" "}
+          {youtubeLinkData?.release_date?.slice(0, 4) ||
+            youtubeLinkData?.first_air_date?.slice(0, 4)}
         </h2>
-        <h2 className="opacity-80">
-          budget:{" "}
-          <NumericFormat
-            value={youtubeLinkData?.budget}
-            className="bg-transparent"
-            thousandSeparator={true}
-            prefix={" $ "}
-            contentEditable={false}
-          />
-        </h2>
-        <h2 className="opacity-80">
-          revenue:{" "}
-          <NumericFormat
-            value={youtubeLinkData?.revenue}
-            className="bg-transparent"
-            thousandSeparator={true}
-            prefix={" $ "}
-            contentEditable={false}
-          />
-        </h2>
+        {youtubeLinkData?.budget && (
+          <h2 className="opacity-80">
+            budget:{" "}
+            <NumericFormat
+              value={youtubeLinkData?.budget}
+              className="bg-transparent"
+              thousandSeparator={true}
+              prefix={" $ "}
+              contentEditable={false}
+            />
+          </h2>
+        )}
+        {youtubeLinkData?.revenue && (
+          <h2 className="opacity-80">
+            revenue:{" "}
+            <NumericFormat
+              value={youtubeLinkData?.revenue}
+              className="bg-transparent"
+              thousandSeparator={true}
+              prefix={" $ "}
+              contentEditable={false}
+            />
+          </h2>
+        )}
+
         <h2 className="opacity-80">
           <div className="flex flex-wrap gap-2">
             genres:{"  "}
@@ -48,6 +55,16 @@ const TrailerText = () => {
             ))}
           </div>
         </h2>
+        {youtubeLinkData?.number_of_seasons && (
+          <h2 className="opacity-80">
+            seasons: {youtubeLinkData?.number_of_seasons}
+          </h2>
+        )}
+        {youtubeLinkData?.number_of_episodes && (
+          <h2 className="opacity-80">
+            episodes: {youtubeLinkData?.number_of_episodes}
+          </h2>
+        )}
 
         <h2 className="opacity-80">
           total votes: {youtubeLinkData?.vote_count}
