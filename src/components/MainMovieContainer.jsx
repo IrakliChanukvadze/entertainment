@@ -13,6 +13,7 @@ const MainMovieContainer = () => {
       ranking={item.vote_average}
       title={item.name || item.title}
       type={item.media_type}
+      id={item.id}
     />
   ));
 

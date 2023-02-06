@@ -8,6 +8,7 @@ import Bookmark from "./pages/Bookmark";
 import Search from "./components/Search";
 import { useContext } from "react";
 import { Context } from "./context/context";
+import Trailer from "./pages/Trailer";
 
 function App() {
   const { allMovies, allTV } = useContext(Context);
@@ -17,13 +18,14 @@ function App() {
 
       <div className=" w-full  xl:h-[94vh] xl:mt-[3vh] xl:w-[85vw] xl:ml-48 ">
         <Routes>
-          <Route path="/entertainment" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route
             path="/movie"
             element={<Movies type="movie" data={allMovies} />}
           />
           <Route path="/tv" element={<Movies type="tv" data={allTV} />} />
           <Route path="/bookmark" element={<Bookmark />} />
+          <Route path="/trailer" element={<Trailer />} />
         </Routes>
       </div>
     </div>

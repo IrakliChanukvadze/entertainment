@@ -16,12 +16,12 @@ import { Context } from "../context/context";
 const Nav = () => {
   const { setCategory, category, bookmarkData } = useContext(Context);
   return (
-    <div className="w-full bg-[#161D2F] h-14 fixed  flex justify-center gap-6  items-center z-[5000] opacity-100 md:h-20 md:w-[94vw] md:ml-[3vw] md:mt-6 md:gap-8  xl:flex-col xl:h-[94vh]  xl:w-32 xl:justify-start xl:pt-32 ">
+    <div className="w-full bg-[#161D2F] h-14 fixed  flex justify-center gap-6  items-center z-[5000] opacity-100 md:h-20 md:w-[94vw] md:ml-[3vw] md:mt-6 md:gap-8 xl:flex-col   xl:h-[94vh]  xl:w-32 xl:justify-start xl:pt-32 ">
       <img
         src={logo}
         className="w-6 h-5 absolute md:w-8 md:h-6 left-6 xl:left-12 xl:top-6 "
       />
-      <Link to="/entertainment">
+      <Link to="/">
         <img
           src={category === "all" ? categoryHome : home}
           className="w-4 h-4 md:w-5 md:h-5 "

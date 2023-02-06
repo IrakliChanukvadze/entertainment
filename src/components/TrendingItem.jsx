@@ -1,14 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import bookmarkEmpty from "../assets/icon-bookmark-empty.svg";
 import bookmarkFull from "../assets/icon-bookmark-full.svg";
 import movie from "../assets/icon-category-movie.svg";
 import tv from "../assets/icon-category-tv.svg";
 import { Context } from "../context/context";
+import { useNavigate } from "react-router-dom";
+import { AiFillPlayCircle } from "react-icons/ai";
 
-const TrendingItem = ({ url, ranking, type, title, item }) => {
-  const { addBookmark, bookmarkData } = useContext(Context);
+const TrendingItem = ({ url, ranking, type, title, item, id }) => {
+  const { addBookmark, bookmarkData, fetchSingleMovieLinkWithVideos } =
+    useContext(Context);
+  const [hovered, setHovered] = useState(false);
+  const navigate = useNavigate();
   return (
-    <div className="relative w-[16rem]  h-44 md:w-[24rem]  md:h-60 xl:w-[30rem]  xl:h-72 ">
+    <div
+      className="relative w-[16rem]  h-44 md:w-[24rem]  md:h-60 xl:w-[30rem]  xl:h-72  "
+      onMouseLeave={() => {
+        setHovered(false);
+      }}
+      onMouseEnter={() => {
+        setHovered(true);
+      }}
+    >
       <div
         className="absolute bg-black w-8 h-8 rounded-full flex items-center justify-center top-2 right-2  cursor-pointer z-50 "
         onClick={() => addBookmark(item, type)}
@@ -23,6 +36,17 @@ const TrendingItem = ({ url, ranking, type, title, item }) => {
           className=" w-3 h-4"
         />
       </div>
+
+      <AiFillPlayCircle
+        size={70}
+        className={`absolute  cursor-pointer rounded-lg top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50 text-white opacity-100   cursor-pointer ${
+          hovered ? "block" : "hidden"
+        }`}
+        onClick={() => {
+          fetchSingleMovieLinkWithVideos(id, type);
+          navigate("/trailer");
+        }}
+      />
       <img
         src={url}
         className="w-[16rem]  h-44 md:w-[24rem]  md:h-60 xl:w-[30rem]  xl:h-72  rounded-[8px] opacity-50 "

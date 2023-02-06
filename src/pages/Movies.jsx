@@ -1,10 +1,9 @@
 import { Pagination } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import MovieItem from "../components/MovieItem";
 import { Context } from "../context/context";
 import Search from "../components/search";
-import { useEffect } from "react";
 
 const Movies = ({ type, data }) => {
   const {
@@ -16,6 +15,14 @@ const Movies = ({ type, data }) => {
     searchContent,
     search,
   } = useContext(Context);
+  const changePage = (event, value) => {
+    setPage(value);
+  };
+
+  useEffect(() => {
+    fetchAll(type, page);
+    window.scroll(0, 0);
+  }, [page]);
 
   const { pathname } = useLocation();
   setCategory(pathname.slice(1));
@@ -29,6 +36,7 @@ const Movies = ({ type, data }) => {
           ranking={item.vote_average}
           title={item.name || item.title}
           type={type}
+          id={item.id}
         />
       ))
     : data?.map((item) => (
@@ -39,6 +47,7 @@ const Movies = ({ type, data }) => {
           ranking={item.vote_average}
           title={item.name || item.title}
           type={type}
+          id={item.id}
         />
       ));
 
@@ -51,6 +60,7 @@ const Movies = ({ type, data }) => {
           ranking={item.vote_average}
           title={item.name || item.title}
           type={type}
+          id={item.id}
         />
       ))
     : data?.map((item) => (
@@ -61,6 +71,7 @@ const Movies = ({ type, data }) => {
           ranking={item.vote_average}
           title={item.name || item.title}
           type={type}
+          id={item.id}
         />
       ));
   return (
@@ -82,11 +93,7 @@ const Movies = ({ type, data }) => {
           count={10}
           variant="outlined"
           page={page}
-          onChange={(event, value) => {
-            fetchAll(type, page);
-            setPage(value);
-            window.scroll(0, 0);
-          }}
+          onChange={changePage}
           sx={{
             color: "white",
             border: "none",

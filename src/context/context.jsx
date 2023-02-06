@@ -14,6 +14,7 @@ function ContextProvider(props) {
   const [searchContent, setSearchContent] = useState([]);
   const [search, setSearch] = useState("");
   const [bookmarkSearch, setBookmarkSearch] = useState([]);
+  const [youtubeLinkData, setYoutubeLinkData] = useState([]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
@@ -27,12 +28,23 @@ function ContextProvider(props) {
     }
   };
 
+  const fetchSingleMovieLinkWithVideos = async (id, type) => {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/${type}/${id}?api_key=${
+        import.meta.env.VITE_SOME_KEY
+      }&append_to_response=videos`
+    );
+
+    // https://api.themoviedb.org/3/tv/100088?api_key=5f1ab07321793e252ef4842bd0974ac1&append_to_response=videos
+    setYoutubeLinkData(data);
+  };
+
   const fetchAll = async (category = "movie", page) => {
-    if (category === "movie") {
+    https: if (category === "movie") {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/discover/movie?api_key=${
           import.meta.env.VITE_SOME_KEY
-        }&language=en-US&sort_by=popularity.desc&include_video=false&page=${page}`
+        }&append_to_response=videos&page=${page}`
       );
 
       setAllMovies(data.results);
@@ -40,7 +52,7 @@ function ContextProvider(props) {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/discover/tv?api_key=${
           import.meta.env.VITE_SOME_KEY
-        }&language=en-US&sort_by=popularity.desc&include_video=false&page=${page}`
+        }&language=en-US&sort_by=popularity.desc&include_video=false&page=${page}&append_to_response=videos`
       );
 
       setAllTV(data.results);
@@ -50,7 +62,7 @@ function ContextProvider(props) {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/trending/all/day?api_key=${
         import.meta.env.VITE_SOME_KEY
-      }`
+      }&append_to_response=videos`
     );
 
     setTrending(data.results);
@@ -78,7 +90,7 @@ function ContextProvider(props) {
             category === "movie" ? "movie" : "tv"
           }?api_key=${
             import.meta.env.VITE_SOME_KEY
-          }&language=en-US&query=${search}&page=1&include_adult=false`
+          }&language=en-US&query=${search}&page=1&include_adult=false&append_to_response=videos`
         );
 
         setSearchContent(data.results);
@@ -115,6 +127,8 @@ function ContextProvider(props) {
         setSearch,
         search,
         bookmarkSearch,
+        fetchSingleMovieLinkWithVideos,
+        youtubeLinkData,
       }}
     >
       {props.children}
