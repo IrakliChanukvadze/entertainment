@@ -23,6 +23,8 @@ Users should be able to:
 - Allow users to add movies to bookmarks, to save their favorite movies for later viewing
 - Fetch search results dynamically, to ensure that users always have access to the latest information
 - Allow users to navigate through pages
+- Provide detailed information on each movie, allowing users to learn more about the plot, cast, and crew
+- Allow users to watch trailers and preview clips, to get a better sense of the movie before deciding whether to watch it
 
 
 ### Screenshot
